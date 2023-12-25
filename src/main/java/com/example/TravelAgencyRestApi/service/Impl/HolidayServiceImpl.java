@@ -1,6 +1,7 @@
 package com.example.TravelAgencyRestApi.service.Impl;
 
 import com.example.TravelAgencyRestApi.dao.HolidayRepository;
+import com.example.TravelAgencyRestApi.dao.LocationRepository;
 import com.example.TravelAgencyRestApi.model.DTO.request.CreateHolidayDTO;
 import com.example.TravelAgencyRestApi.model.DTO.request.UpdateHolidayDTO;
 import com.example.TravelAgencyRestApi.model.DTO.response.ResponseHolidayDTO;
@@ -18,10 +19,12 @@ import java.util.stream.Collectors;
 @Service
 public class HolidayServiceImpl implements HolidayService {
     private final HolidayRepository repository;
+    private final LocationRepository locationRepository;
 
     @Autowired
-    public HolidayServiceImpl(HolidayRepository repository) {
+    public HolidayServiceImpl(HolidayRepository repository, LocationRepository locationRepository) {
         this.repository = repository;
+        this.locationRepository = locationRepository;
     }
 
     private ResponseHolidayDTO converterToResponce(Holiday holiday){
@@ -34,8 +37,7 @@ public class HolidayServiceImpl implements HolidayService {
         Holiday holiday = new Holiday();
 
         // Създаване на Location от CreateHolidayDTO
-        Location location = new Location();
-        BeanUtils.copyProperties(createHolidayDTO.getLocation(), location);
+        Location location = this.loadLocationById(createHolidayDTO.getLocationId());
 
         // Задаване на Location на Holiday
         holiday.setLocation(location);
@@ -44,11 +46,11 @@ public class HolidayServiceImpl implements HolidayService {
         BeanUtils.copyProperties(createHolidayDTO, holiday);
 
         // Записване на Holiday в репозиторито
-        repository.save(holiday);
+        Holiday savedLocation = repository.save(holiday);
 
         // Създаване на ResponseHolidayDTO и копиране на данните от Holiday
         ResponseHolidayDTO response = new ResponseHolidayDTO();
-        BeanUtils.copyProperties(holiday, response);
+        BeanUtils.copyProperties(savedLocation, response);
 
         return response;
     }
@@ -86,6 +88,10 @@ public class HolidayServiceImpl implements HolidayService {
             return true;
         }
         return false;
+    }
+
+    private Location loadLocationById(long id){
+        return locationRepository.findById(id).get();
     }
 
 }

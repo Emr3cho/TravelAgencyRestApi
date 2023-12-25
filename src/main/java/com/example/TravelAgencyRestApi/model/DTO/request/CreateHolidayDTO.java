@@ -5,35 +5,23 @@ import lombok.Data;
 
 import java.util.Date;
 
-@Data
 public class CreateHolidayDTO {
-    private Location location;
+    private Integer locationId;
     private String title;
     private Date startDate;
     private int duration;
-    private String price;
+    private double price;
     private int freeSlots;
-
-
-
-    public CreateHolidayDTO(Location location, String title, Date startDate, int duration, String price, int freeSlots) {
-        this.location = location;
-        this.title = title;
-        this.startDate = startDate;
-        this.duration = duration;
-        this.price = price;
-        this.freeSlots = freeSlots;
-    }
 
     public CreateHolidayDTO() {
     }
 
-    public Location getLocation() {
-        return location;
+    public Integer getLocationId() {
+        return locationId;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocationId(Integer locationId) {
+        this.locationId = locationId;
     }
 
     public String getTitle() {
@@ -60,11 +48,11 @@ public class CreateHolidayDTO {
         this.duration = duration;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

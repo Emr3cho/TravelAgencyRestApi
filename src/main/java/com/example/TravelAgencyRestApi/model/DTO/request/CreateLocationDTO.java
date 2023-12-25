@@ -4,7 +4,7 @@ import com.example.TravelAgencyRestApi.model.Location;
 import lombok.Data;
 
 @Data
-public class CreateLocationDTO extends Location {
+public class CreateLocationDTO{
     private String number;
     private String country;
     private String city;

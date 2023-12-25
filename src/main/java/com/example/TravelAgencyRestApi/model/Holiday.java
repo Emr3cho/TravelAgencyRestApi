@@ -15,7 +15,7 @@ public class Holiday {
     private long id;
 
     private Integer duration;
-    private Integer freeslots;
+    private Integer freeSlots;
     private double price;
 
     @ManyToOne
@@ -26,19 +26,9 @@ public class Holiday {
 
     @Temporal(TemporalType.DATE)
     @Column(name = "start_date")
-    private Date date;
+    private Date startDate;
 
     public Holiday() {
-    }
-
-    public Holiday(long id, Integer duration, Integer freeslots, double price, Location location, String title, Date date) {
-        this.id = id;
-        this.duration = duration;
-        this.freeslots = freeslots;
-        this.price = price;
-        this.location = location;
-        this.title = title;
-        this.date = date;
     }
 
     public long getId() {
@@ -49,20 +39,20 @@ public class Holiday {
         this.id = id;
     }
 
-    public int getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
-    public int getFreeslots() {
-        return freeslots;
+    public Integer getFreeSlots() {
+        return freeSlots;
     }
 
-    public void setFreeslots(int freeslots) {
-        this.freeslots = freeslots;
+    public void setFreeSlots(Integer freeSlots) {
+        this.freeSlots = freeSlots;
     }
 
     public double getPrice() {
@@ -89,11 +79,11 @@ public class Holiday {
         this.title = title;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 }
