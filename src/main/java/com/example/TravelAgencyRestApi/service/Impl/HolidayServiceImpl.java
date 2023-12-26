@@ -37,7 +37,7 @@ public class HolidayServiceImpl implements HolidayService {
         Holiday holiday = new Holiday();
 
         // Създаване на Location от CreateHolidayDTO
-        Location location = this.loadLocationById(createHolidayDTO.getLocationId());
+        Location location = this.loadLocationById(createHolidayDTO.getLocation());
 
         // Задаване на Location на Holiday
         holiday.setLocation(location);
@@ -51,7 +51,6 @@ public class HolidayServiceImpl implements HolidayService {
         // Създаване на ResponseHolidayDTO и копиране на данните от Holiday
         ResponseHolidayDTO response = new ResponseHolidayDTO();
         BeanUtils.copyProperties(savedLocation, response);
-
         return response;
     }
 

@@ -16,7 +16,7 @@ public class Holiday {
 
     private Integer duration;
     private Integer freeSlots;
-    private double price;
+    private String price;
 
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)
@@ -55,11 +55,11 @@ public class Holiday {
         this.freeSlots = freeSlots;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
